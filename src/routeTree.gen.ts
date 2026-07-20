@@ -9,10 +9,16 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as ApiPublicHubtelInitiateRouteImport } from './routes/api/public/hubtel/initiate'
 import { Route as ApiPublicHubtelCallbackRouteImport } from './routes/api/public/hubtel/callback'
 
+const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
+  id: '/sitemap.xml',
+  path: '/sitemap.xml',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
@@ -31,40 +37,60 @@ const ApiPublicHubtelCallbackRoute = ApiPublicHubtelCallbackRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/api/public/hubtel/callback': typeof ApiPublicHubtelCallbackRoute
   '/api/public/hubtel/initiate': typeof ApiPublicHubtelInitiateRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/api/public/hubtel/callback': typeof ApiPublicHubtelCallbackRoute
   '/api/public/hubtel/initiate': typeof ApiPublicHubtelInitiateRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/api/public/hubtel/callback': typeof ApiPublicHubtelCallbackRoute
   '/api/public/hubtel/initiate': typeof ApiPublicHubtelInitiateRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/api/public/hubtel/callback' | '/api/public/hubtel/initiate'
+  fullPaths:
+    | '/'
+    | '/sitemap.xml'
+    | '/api/public/hubtel/callback'
+    | '/api/public/hubtel/initiate'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/api/public/hubtel/callback' | '/api/public/hubtel/initiate'
+  to:
+    | '/'
+    | '/sitemap.xml'
+    | '/api/public/hubtel/callback'
+    | '/api/public/hubtel/initiate'
   id:
     | '__root__'
     | '/'
+    | '/sitemap.xml'
     | '/api/public/hubtel/callback'
     | '/api/public/hubtel/initiate'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   ApiPublicHubtelCallbackRoute: typeof ApiPublicHubtelCallbackRoute
   ApiPublicHubtelInitiateRoute: typeof ApiPublicHubtelInitiateRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/sitemap.xml': {
+      id: '/sitemap.xml'
+      path: '/sitemap.xml'
+      fullPath: '/sitemap.xml'
+      preLoaderRoute: typeof SitemapDotxmlRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -91,6 +117,7 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  SitemapDotxmlRoute: SitemapDotxmlRoute,
   ApiPublicHubtelCallbackRoute: ApiPublicHubtelCallbackRoute,
   ApiPublicHubtelInitiateRoute: ApiPublicHubtelInitiateRoute,
 }
