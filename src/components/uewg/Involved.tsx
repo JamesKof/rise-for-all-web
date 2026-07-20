@@ -157,7 +157,7 @@ function PartnerCard() {
         </li>
       </ul>
       <Button asChild variant="outline" className="mt-6 w-full border-primary/30 text-primary hover:bg-primary/5">
-        <a href="#contact">Start a conversation</a>
+        <a href="/contact">Start a conversation</a>
       </Button>
     </div>
   );

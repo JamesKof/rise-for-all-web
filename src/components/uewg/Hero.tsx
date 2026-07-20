@@ -1,6 +1,7 @@
 import { Heart, ArrowRight, Sparkles } from "lucide-react";
+import { Link } from "@tanstack/react-router";
 import { Button } from "@/components/ui/button";
-import team from "@/assets/img/team.jpeg";
+import heroAdvocacy from "@/assets/img/hero-advocacy.jpeg";
 import motherChild from "@/assets/img/mother-child.jpeg";
 import brandedTee from "@/assets/img/branded-tee.jpeg";
 
@@ -36,17 +37,17 @@ export function Hero() {
           </p>
           <div className="mt-8 flex flex-wrap gap-3">
             <Button asChild size="lg" className="bg-primary text-primary-foreground shadow-lg shadow-primary/25 transition-all hover:bg-primary/90 hover:-translate-y-0.5 hover:shadow-xl hover:shadow-primary/30">
-              <a href="#involved">
+              <Link to="/involved">
                 <Heart className="mr-2 h-4 w-4" /> Donate Now
-              </a>
+              </Link>
             </Button>
             <Button asChild size="lg" variant="outline" className="border-primary/30 text-primary transition-all hover:bg-primary/5 hover:-translate-y-0.5">
-              <a href="#involved">
+              <Link to="/involved">
                 Partner With Us <ArrowRight className="ml-2 h-4 w-4" />
-              </a>
+              </Link>
             </Button>
             <Button asChild size="lg" variant="ghost" className="text-primary hover:bg-primary/5">
-              <a href="#programs" className="story-link">Explore Our Work</a>
+              <Link to="/programs" className="story-link">Explore Our Work</Link>
             </Button>
           </div>
 
@@ -73,15 +74,15 @@ export function Hero() {
           />
           <div className="relative aspect-[4/5] overflow-hidden rounded-[2rem] ring-1 ring-gold/40 shadow-2xl">
             <img
-              src={team}
-              alt="UEWG team members in branded shirts"
-              className="h-full w-full object-cover object-top transition-transform duration-[8s] ease-out hover:scale-105"
+              src={heroAdvocacy}
+              alt="Lady Portia advocating for girls' menstrual health"
+              className="h-full w-full object-cover object-[center_20%] transition-transform duration-[8s] ease-out hover:scale-105"
             />
             <div aria-hidden className="pointer-events-none absolute inset-0 bg-gradient-to-t from-plum/40 via-transparent to-transparent" />
             <div className="absolute inset-x-0 bottom-0 flex items-end justify-between gap-3 p-5 text-primary-foreground">
               <div>
-                <div className="text-xs font-semibold uppercase tracking-[0.2em] text-gold">United in purpose</div>
-                <div className="font-serif text-lg leading-tight">Sisters serving communities across Ghana</div>
+                <div className="text-xs font-semibold uppercase tracking-[0.2em] text-gold">Advocating for girls</div>
+                <div className="font-serif text-lg leading-tight">"No girl should miss school because of period pain."</div>
               </div>
             </div>
           </div>

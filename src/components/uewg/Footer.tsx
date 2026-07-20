@@ -1,13 +1,15 @@
 import { Facebook, Instagram, Twitter, Phone, MessageCircle } from "lucide-react";
+import { Link } from "@tanstack/react-router";
 import logo from "@/assets/img/logo.jpeg";
 
 const links = [
-  { href: "#home", label: "Home" },
-  { href: "#about", label: "About" },
-  { href: "#programs", label: "Programs" },
-  { href: "#involved", label: "Get Involved" },
-  { href: "#contact", label: "Contact" },
-];
+  { to: "/", label: "Home" },
+  { to: "/about", label: "About" },
+  { to: "/programs", label: "Programs" },
+  { to: "/impact", label: "Impact" },
+  { to: "/involved", label: "Get Involved" },
+  { to: "/contact", label: "Contact" },
+] as const;
 
 export function Footer() {
   return (
@@ -33,10 +35,10 @@ export function Footer() {
             <div className="text-sm font-semibold uppercase tracking-widest text-gold">Quick links</div>
             <ul className="mt-4 space-y-2 text-sm">
               {links.map((l) => (
-                <li key={l.href}>
-                  <a href={l.href} className="text-primary-foreground/80 hover:text-gold">
+                <li key={l.to}>
+                  <Link to={l.to} className="text-primary-foreground/80 hover:text-gold">
                     {l.label}
-                  </a>
+                  </Link>
                 </li>
               ))}
             </ul>
