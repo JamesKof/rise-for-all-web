@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as ApiPublicHubtelInitiateRouteImport } from './routes/api/public/hubtel/initiate'
+import { Route as ApiPublicHubtelCallbackRouteImport } from './routes/api/public/hubtel/callback'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -22,30 +23,43 @@ const ApiPublicHubtelInitiateRoute = ApiPublicHubtelInitiateRouteImport.update({
   path: '/api/public/hubtel/initiate',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ApiPublicHubtelCallbackRoute = ApiPublicHubtelCallbackRouteImport.update({
+  id: '/api/public/hubtel/callback',
+  path: '/api/public/hubtel/callback',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/api/public/hubtel/callback': typeof ApiPublicHubtelCallbackRoute
   '/api/public/hubtel/initiate': typeof ApiPublicHubtelInitiateRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/api/public/hubtel/callback': typeof ApiPublicHubtelCallbackRoute
   '/api/public/hubtel/initiate': typeof ApiPublicHubtelInitiateRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/api/public/hubtel/callback': typeof ApiPublicHubtelCallbackRoute
   '/api/public/hubtel/initiate': typeof ApiPublicHubtelInitiateRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/api/public/hubtel/initiate'
+  fullPaths: '/' | '/api/public/hubtel/callback' | '/api/public/hubtel/initiate'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/api/public/hubtel/initiate'
-  id: '__root__' | '/' | '/api/public/hubtel/initiate'
+  to: '/' | '/api/public/hubtel/callback' | '/api/public/hubtel/initiate'
+  id:
+    | '__root__'
+    | '/'
+    | '/api/public/hubtel/callback'
+    | '/api/public/hubtel/initiate'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  ApiPublicHubtelCallbackRoute: typeof ApiPublicHubtelCallbackRoute
   ApiPublicHubtelInitiateRoute: typeof ApiPublicHubtelInitiateRoute
 }
 
@@ -65,11 +79,19 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ApiPublicHubtelInitiateRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/api/public/hubtel/callback': {
+      id: '/api/public/hubtel/callback'
+      path: '/api/public/hubtel/callback'
+      fullPath: '/api/public/hubtel/callback'
+      preLoaderRoute: typeof ApiPublicHubtelCallbackRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  ApiPublicHubtelCallbackRoute: ApiPublicHubtelCallbackRoute,
   ApiPublicHubtelInitiateRoute: ApiPublicHubtelInitiateRoute,
 }
 export const routeTree = rootRouteImport
