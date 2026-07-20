@@ -62,6 +62,15 @@ export function Footer() {
                   WhatsApp us
                 </a>
               </li>
+              <li className="flex items-center gap-2">
+                <Mail className="h-4 w-4 text-gold" />
+                <a
+                  href="mailto:uniqueempoweredwomenglobal.gh@gmail.com"
+                  className="hover:text-gold break-all"
+                >
+                  uniqueempoweredwomenglobal.gh@gmail.com
+                </a>
+              </li>
             </ul>
             <div className="mt-4 flex gap-3">
               {[
