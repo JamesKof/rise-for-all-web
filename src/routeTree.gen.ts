@@ -10,6 +10,7 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
+import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as ApiPublicHubtelInitiateRouteImport } from './routes/api/public/hubtel/initiate'
 import { Route as ApiPublicHubtelCallbackRouteImport } from './routes/api/public/hubtel/callback'
@@ -17,6 +18,11 @@ import { Route as ApiPublicHubtelCallbackRouteImport } from './routes/api/public
 const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
   id: '/sitemap.xml',
   path: '/sitemap.xml',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AboutRoute = AboutRouteImport.update({
+  id: '/about',
+  path: '/about',
   getParentRoute: () => rootRouteImport,
 } as any)
 const IndexRoute = IndexRouteImport.update({
@@ -37,12 +43,14 @@ const ApiPublicHubtelCallbackRoute = ApiPublicHubtelCallbackRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/api/public/hubtel/callback': typeof ApiPublicHubtelCallbackRoute
   '/api/public/hubtel/initiate': typeof ApiPublicHubtelInitiateRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/api/public/hubtel/callback': typeof ApiPublicHubtelCallbackRoute
   '/api/public/hubtel/initiate': typeof ApiPublicHubtelInitiateRoute
@@ -50,6 +58,7 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/api/public/hubtel/callback': typeof ApiPublicHubtelCallbackRoute
   '/api/public/hubtel/initiate': typeof ApiPublicHubtelInitiateRoute
@@ -58,18 +67,21 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/about'
     | '/sitemap.xml'
     | '/api/public/hubtel/callback'
     | '/api/public/hubtel/initiate'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/about'
     | '/sitemap.xml'
     | '/api/public/hubtel/callback'
     | '/api/public/hubtel/initiate'
   id:
     | '__root__'
     | '/'
+    | '/about'
     | '/sitemap.xml'
     | '/api/public/hubtel/callback'
     | '/api/public/hubtel/initiate'
@@ -77,6 +89,7 @@ export interface FileRouteTypes {
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AboutRoute: typeof AboutRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   ApiPublicHubtelCallbackRoute: typeof ApiPublicHubtelCallbackRoute
   ApiPublicHubtelInitiateRoute: typeof ApiPublicHubtelInitiateRoute
@@ -89,6 +102,13 @@ declare module '@tanstack/react-router' {
       path: '/sitemap.xml'
       fullPath: '/sitemap.xml'
       preLoaderRoute: typeof SitemapDotxmlRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/about': {
+      id: '/about'
+      path: '/about'
+      fullPath: '/about'
+      preLoaderRoute: typeof AboutRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/': {
@@ -117,6 +137,7 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AboutRoute: AboutRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
   ApiPublicHubtelCallbackRoute: ApiPublicHubtelCallbackRoute,
   ApiPublicHubtelInitiateRoute: ApiPublicHubtelInitiateRoute,
