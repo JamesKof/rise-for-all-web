@@ -14,7 +14,120 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      contact_messages: {
+        Row: {
+          created_at: string
+          email: string
+          id: string
+          message: string
+          name: string
+        }
+        Insert: {
+          created_at?: string
+          email: string
+          id?: string
+          message: string
+          name: string
+        }
+        Update: {
+          created_at?: string
+          email?: string
+          id?: string
+          message?: string
+          name?: string
+        }
+        Relationships: []
+      }
+      donations: {
+        Row: {
+          amount_ghs: number
+          created_at: string
+          donor_email: string | null
+          donor_name: string | null
+          donor_phone: string | null
+          frequency: string
+          hubtel_checkout_id: string | null
+          hubtel_client_reference: string | null
+          id: string
+          message: string | null
+          status: string
+          updated_at: string
+        }
+        Insert: {
+          amount_ghs: number
+          created_at?: string
+          donor_email?: string | null
+          donor_name?: string | null
+          donor_phone?: string | null
+          frequency?: string
+          hubtel_checkout_id?: string | null
+          hubtel_client_reference?: string | null
+          id?: string
+          message?: string | null
+          status?: string
+          updated_at?: string
+        }
+        Update: {
+          amount_ghs?: number
+          created_at?: string
+          donor_email?: string | null
+          donor_name?: string | null
+          donor_phone?: string | null
+          frequency?: string
+          hubtel_checkout_id?: string | null
+          hubtel_client_reference?: string | null
+          id?: string
+          message?: string | null
+          status?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      newsletter_subscribers: {
+        Row: {
+          created_at: string
+          email: string
+          id: string
+        }
+        Insert: {
+          created_at?: string
+          email: string
+          id?: string
+        }
+        Update: {
+          created_at?: string
+          email?: string
+          id?: string
+        }
+        Relationships: []
+      }
+      volunteer_signups: {
+        Row: {
+          created_at: string
+          email: string
+          id: string
+          interest: string | null
+          name: string
+          phone: string
+        }
+        Insert: {
+          created_at?: string
+          email: string
+          id?: string
+          interest?: string | null
+          name: string
+          phone: string
+        }
+        Update: {
+          created_at?: string
+          email?: string
+          id?: string
+          interest?: string | null
+          name?: string
+          phone?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
