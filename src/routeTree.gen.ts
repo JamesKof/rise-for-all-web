@@ -10,6 +10,7 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
+import { Route as ProgramsRouteImport } from './routes/programs'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as ApiPublicHubtelInitiateRouteImport } from './routes/api/public/hubtel/initiate'
@@ -18,6 +19,11 @@ import { Route as ApiPublicHubtelCallbackRouteImport } from './routes/api/public
 const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
   id: '/sitemap.xml',
   path: '/sitemap.xml',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProgramsRoute = ProgramsRouteImport.update({
+  id: '/programs',
+  path: '/programs',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AboutRoute = AboutRouteImport.update({
@@ -44,6 +50,7 @@ const ApiPublicHubtelCallbackRoute = ApiPublicHubtelCallbackRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/programs': typeof ProgramsRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/api/public/hubtel/callback': typeof ApiPublicHubtelCallbackRoute
   '/api/public/hubtel/initiate': typeof ApiPublicHubtelInitiateRoute
@@ -51,6 +58,7 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/programs': typeof ProgramsRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/api/public/hubtel/callback': typeof ApiPublicHubtelCallbackRoute
   '/api/public/hubtel/initiate': typeof ApiPublicHubtelInitiateRoute
@@ -59,6 +67,7 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/programs': typeof ProgramsRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/api/public/hubtel/callback': typeof ApiPublicHubtelCallbackRoute
   '/api/public/hubtel/initiate': typeof ApiPublicHubtelInitiateRoute
@@ -68,6 +77,7 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/about'
+    | '/programs'
     | '/sitemap.xml'
     | '/api/public/hubtel/callback'
     | '/api/public/hubtel/initiate'
@@ -75,6 +85,7 @@ export interface FileRouteTypes {
   to:
     | '/'
     | '/about'
+    | '/programs'
     | '/sitemap.xml'
     | '/api/public/hubtel/callback'
     | '/api/public/hubtel/initiate'
@@ -82,6 +93,7 @@ export interface FileRouteTypes {
     | '__root__'
     | '/'
     | '/about'
+    | '/programs'
     | '/sitemap.xml'
     | '/api/public/hubtel/callback'
     | '/api/public/hubtel/initiate'
@@ -90,6 +102,7 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
+  ProgramsRoute: typeof ProgramsRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   ApiPublicHubtelCallbackRoute: typeof ApiPublicHubtelCallbackRoute
   ApiPublicHubtelInitiateRoute: typeof ApiPublicHubtelInitiateRoute
@@ -102,6 +115,13 @@ declare module '@tanstack/react-router' {
       path: '/sitemap.xml'
       fullPath: '/sitemap.xml'
       preLoaderRoute: typeof SitemapDotxmlRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/programs': {
+      id: '/programs'
+      path: '/programs'
+      fullPath: '/programs'
+      preLoaderRoute: typeof ProgramsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/about': {
@@ -138,6 +158,7 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
+  ProgramsRoute: ProgramsRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
   ApiPublicHubtelCallbackRoute: ApiPublicHubtelCallbackRoute,
   ApiPublicHubtelInitiateRoute: ApiPublicHubtelInitiateRoute,
