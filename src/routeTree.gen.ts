@@ -10,33 +10,43 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as ApiPublicHubtelInitiateRouteImport } from './routes/api/public/hubtel/initiate'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ApiPublicHubtelInitiateRoute = ApiPublicHubtelInitiateRouteImport.update({
+  id: '/api/public/hubtel/initiate',
+  path: '/api/public/hubtel/initiate',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/api/public/hubtel/initiate': typeof ApiPublicHubtelInitiateRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/api/public/hubtel/initiate': typeof ApiPublicHubtelInitiateRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/api/public/hubtel/initiate': typeof ApiPublicHubtelInitiateRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths: '/' | '/api/public/hubtel/initiate'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to: '/' | '/api/public/hubtel/initiate'
+  id: '__root__' | '/' | '/api/public/hubtel/initiate'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  ApiPublicHubtelInitiateRoute: typeof ApiPublicHubtelInitiateRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +58,19 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/api/public/hubtel/initiate': {
+      id: '/api/public/hubtel/initiate'
+      path: '/api/public/hubtel/initiate'
+      fullPath: '/api/public/hubtel/initiate'
+      preLoaderRoute: typeof ApiPublicHubtelInitiateRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  ApiPublicHubtelInitiateRoute: ApiPublicHubtelInitiateRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
