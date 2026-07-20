@@ -65,7 +65,12 @@ export function Contact() {
               </span>
               <div>
                 <div className="font-semibold text-primary">Email</div>
-                <div className="text-foreground/70">Send us a message below &mdash; we reply within a few days.</div>
+                <a
+                  href="mailto:uniqueempoweredwomenglobal.gh@gmail.com"
+                  className="text-foreground/70 underline-offset-4 hover:text-primary hover:underline"
+                >
+                  uniqueempoweredwomenglobal.gh@gmail.com
+                </a>
               </div>
             </li>
           </ul>

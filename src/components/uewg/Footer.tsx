@@ -1,4 +1,4 @@
-import { Facebook, Instagram, Twitter, Phone, MessageCircle } from "lucide-react";
+import { Facebook, Instagram, Twitter, Phone, MessageCircle, Mail } from "lucide-react";
 import { Link } from "@tanstack/react-router";
 import logo from "@/assets/img/logo.jpeg";
 
@@ -60,6 +60,15 @@ export function Footer() {
                   className="hover:text-gold"
                 >
                   WhatsApp us
+                </a>
+              </li>
+              <li className="flex items-center gap-2">
+                <Mail className="h-4 w-4 text-gold" />
+                <a
+                  href="mailto:uniqueempoweredwomenglobal.gh@gmail.com"
+                  className="hover:text-gold break-all"
+                >
+                  uniqueempoweredwomenglobal.gh@gmail.com
                 </a>
               </li>
             </ul>
