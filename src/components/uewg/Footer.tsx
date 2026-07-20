@@ -1,4 +1,4 @@
-import { Facebook, Instagram, Twitter } from "lucide-react";
+import { Facebook, Instagram, Twitter, Phone, MessageCircle } from "lucide-react";
 import logo from "@/assets/img/logo.jpeg";
 
 const links = [
@@ -44,6 +44,23 @@ export function Footer() {
 
           <div>
             <div className="text-sm font-semibold uppercase tracking-widest text-gold">Connect</div>
+            <ul className="mt-4 space-y-2 text-sm text-primary-foreground/80">
+              <li className="flex items-center gap-2">
+                <Phone className="h-4 w-4 text-gold" />
+                <a href="tel:+233556453591" className="hover:text-gold">0556453591</a>
+              </li>
+              <li className="flex items-center gap-2">
+                <MessageCircle className="h-4 w-4 text-gold" />
+                <a
+                  href="https://wa.me/233556453591"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-gold"
+                >
+                  WhatsApp us
+                </a>
+              </li>
+            </ul>
             <div className="mt-4 flex gap-3">
               {[
                 { Icon: Facebook, label: "Facebook" },
