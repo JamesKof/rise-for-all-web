@@ -94,6 +94,14 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { property: "og:type", content: "website" },
       { property: "og:site_name", content: "Unique Empowered Women Global" },
       { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:title", content: "Unique Empowered Women Global — Women, Rise For All" },
+      {
+        name: "twitter:description",
+        content:
+          "A Ghana-based NGO empowering women, girls, and children through faith, education, health, and humanitarian outreach.",
+      },
+      { name: "robots", content: "index, follow" },
+      { name: "theme-color", content: "#5B1A6B" },
     ],
     links: [
       {

@@ -11,14 +11,22 @@ import { Contact } from "@/components/uewg/Contact";
 import { Footer } from "@/components/uewg/Footer";
 import logo from "@/assets/img/logo.jpeg";
 
+const SITE_URL = "https://rise-for-all-web.lovable.app";
+
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { property: "og:url", content: "/" },
-      { property: "og:image", content: logo },
-      { name: "twitter:image", content: logo },
+      { title: "UEWG — Unique Empowered Women Global | Women, Rise For All" },
+      {
+        name: "description",
+        content:
+          "UEWG is a Ghana-based NGO empowering women, girls, and children through faith, education, health, leadership, and community outreach. Volunteer, partner, or give today.",
+      },
+      { property: "og:url", content: `${SITE_URL}/` },
+      { property: "og:image", content: `${SITE_URL}/favicon.jpeg` },
+      { name: "twitter:image", content: `${SITE_URL}/favicon.jpeg` },
     ],
-    links: [{ rel: "canonical", href: "/" }],
+    links: [{ rel: "canonical", href: `${SITE_URL}/` }],
     scripts: [
       {
         type: "application/ld+json",
@@ -31,7 +39,15 @@ export const Route = createFileRoute("/")({
           foundingDate: "2024-11",
           founder: { "@type": "Person", name: "Portia Baanim" },
           areaServed: "Ghana",
-          logo,
+          url: SITE_URL,
+          logo: `${SITE_URL}/favicon.jpeg`,
+          contactPoint: {
+            "@type": "ContactPoint",
+            telephone: "+233556453591",
+            contactType: "customer service",
+            areaServed: "GH",
+            availableLanguage: ["English"],
+          },
         }),
       },
     ],

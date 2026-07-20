@@ -1,10 +1,14 @@
 import { useState } from "react";
-import { MapPin, Mail, Facebook, Instagram, Twitter, Send } from "lucide-react";
+import { MapPin, Mail, Phone, Facebook, Instagram, Twitter, Send } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { toast } from "sonner";
+import { contactSchema, newsletterSchema, submitContact, subscribeNewsletter } from "@/lib/submissions";
+
+const PRIMARY_PHONE = "0556453591";
+const PRIMARY_PHONE_INTL = "+233556453591";
 
 export function Contact() {
   return (
@@ -25,6 +29,29 @@ export function Contact() {
           <ul className="mt-8 space-y-4 text-sm">
             <li className="flex items-start gap-3">
               <span className="grid h-10 w-10 shrink-0 place-items-center rounded-xl bg-primary/10 text-primary">
+                <Phone className="h-4 w-4" />
+              </span>
+              <div>
+                <div className="font-semibold text-primary">Call / WhatsApp</div>
+                <a
+                  href={`tel:${PRIMARY_PHONE_INTL}`}
+                  className="text-foreground/80 hover:text-primary"
+                >
+                  {PRIMARY_PHONE}
+                </a>
+                {" · "}
+                <a
+                  href={`https://wa.me/${PRIMARY_PHONE_INTL.replace("+", "")}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-foreground/80 hover:text-primary"
+                >
+                  Chat on WhatsApp
+                </a>
+              </div>
+            </li>
+            <li className="flex items-start gap-3">
+              <span className="grid h-10 w-10 shrink-0 place-items-center rounded-xl bg-primary/10 text-primary">
                 <MapPin className="h-4 w-4" />
               </span>
               <div>
@@ -38,7 +65,7 @@ export function Contact() {
               </span>
               <div>
                 <div className="font-semibold text-primary">Email</div>
-                <div className="text-foreground/70">Use the form &mdash; we&rsquo;ll get back within a few days.</div>
+                <div className="text-foreground/70">Send us a message below &mdash; we reply within a few days.</div>
               </div>
             </li>
           </ul>
@@ -77,14 +104,31 @@ function ContactForm() {
   return (
     <form
       className="rounded-3xl border border-border bg-card p-7 shadow-sm sm:p-9"
-      onSubmit={(e) => {
+      onSubmit={async (e) => {
         e.preventDefault();
+        const form = e.currentTarget;
+        const fd = new FormData(form);
+        const parsed = contactSchema.safeParse({
+          name: String(fd.get("name") ?? ""),
+          email: String(fd.get("email") ?? ""),
+          message: String(fd.get("message") ?? ""),
+        });
+        if (!parsed.success) {
+          toast.error(parsed.error.issues[0]?.message ?? "Please check the form");
+          return;
+        }
         setLoading(true);
-        setTimeout(() => {
-          setLoading(false);
-          (e.currentTarget as HTMLFormElement).reset();
+        try {
+          await submitContact(parsed.data);
+          form.reset();
           toast.success("Message sent!", { description: "We'll be in touch soon." });
-        }, 600);
+        } catch (err) {
+          toast.error("Could not send your message", {
+            description: err instanceof Error ? err.message : "Please try again.",
+          });
+        } finally {
+          setLoading(false);
+        }
       }}
     >
       <h3 className="font-serif text-2xl font-semibold text-primary">Send us a message</h3>
@@ -110,13 +154,31 @@ function ContactForm() {
 }
 
 function NewsletterForm() {
+  const [loading, setLoading] = useState(false);
   return (
     <form
       className="mt-10 rounded-2xl border border-gold/40 bg-background p-5"
-      onSubmit={(e) => {
+      onSubmit={async (e) => {
         e.preventDefault();
-        (e.currentTarget as HTMLFormElement).reset();
-        toast.success("You're subscribed!");
+        const form = e.currentTarget;
+        const fd = new FormData(form);
+        const parsed = newsletterSchema.safeParse({ email: String(fd.get("email") ?? "") });
+        if (!parsed.success) {
+          toast.error(parsed.error.issues[0]?.message ?? "Enter a valid email");
+          return;
+        }
+        setLoading(true);
+        try {
+          await subscribeNewsletter(parsed.data);
+          form.reset();
+          toast.success("You're subscribed!");
+        } catch (err) {
+          toast.error("Could not subscribe", {
+            description: err instanceof Error ? err.message : "Please try again.",
+          });
+        } finally {
+          setLoading(false);
+        }
       }}
     >
       <div className="font-serif text-lg font-semibold text-primary">Newsletter</div>
@@ -124,9 +186,9 @@ function NewsletterForm() {
         Occasional updates on outreach, events, and impact stories.
       </p>
       <div className="mt-3 flex flex-col gap-2 sm:flex-row">
-        <Input type="email" required placeholder="you@example.com" className="bg-background" />
-        <Button type="submit" className="bg-primary text-primary-foreground hover:bg-primary/90">
-          Subscribe
+        <Input name="email" type="email" required placeholder="you@example.com" className="bg-background" />
+        <Button type="submit" disabled={loading} className="bg-primary text-primary-foreground hover:bg-primary/90">
+          {loading ? "Subscribing…" : "Subscribe"}
         </Button>
       </div>
     </form>
