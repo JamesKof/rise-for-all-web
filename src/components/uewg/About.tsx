@@ -1,4 +1,4 @@
-import founder from "@/assets/founder.jpeg.asset.json";
+import founder from "@/assets/img/founder.jpeg";
 import { Quote } from "lucide-react";
 
 export function About() {
@@ -8,7 +8,7 @@ export function About() {
         <div>
           <div className="relative aspect-[4/5] overflow-hidden rounded-3xl ring-4 ring-gold/40 shadow-xl">
             <img
-              src={founder.url}
+              src={founder}
               alt="Madam Portia Baanim (Lady Portia), founder of UEWG"
               className="h-full w-full object-cover"
             />

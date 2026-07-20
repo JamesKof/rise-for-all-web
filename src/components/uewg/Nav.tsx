@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Menu, X, Heart } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import logo from "@/assets/logo.jpeg.asset.json";
+import logo from "@/assets/img/logo.jpeg";
 
 const links = [
   { href: "#about", label: "About" },
@@ -18,7 +18,7 @@ export function Nav() {
       <div className="mx-auto grid max-w-7xl grid-cols-[minmax(0,1fr)_auto] items-center gap-4 px-4 py-3 sm:px-6 lg:px-8">
         <a href="#home" className="flex min-w-0 items-center gap-3">
           <img
-            src={logo.url}
+            src={logo}
             alt="UEWG logo"
             className="h-11 w-11 shrink-0 rounded-full ring-2 ring-gold/60"
           />

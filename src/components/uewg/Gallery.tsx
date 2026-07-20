@@ -1,19 +1,19 @@
-import team from "@/assets/team.jpeg.asset.json";
-import outreachBooks from "@/assets/outreach-books.jpeg.asset.json";
-import kidsDonation from "@/assets/kids-donation.jpeg.asset.json";
-import motherChild from "@/assets/mother-child.jpeg.asset.json";
-import healthAdvocacy from "@/assets/health-advocacy.jpeg.asset.json";
-import brandedTee from "@/assets/branded-tee.jpeg.asset.json";
-import portraitGreen from "@/assets/portrait-green.jpeg.asset.json";
+import team from "@/assets/img/team.jpeg";
+import outreachBooks from "@/assets/img/outreach-books.jpeg";
+import kidsDonation from "@/assets/img/kids-donation.jpeg";
+import motherChild from "@/assets/img/mother-child.jpeg";
+import healthAdvocacy from "@/assets/img/health-advocacy.jpeg";
+import brandedTee from "@/assets/img/branded-tee.jpeg";
+import portraitGreen from "@/assets/img/portrait-green.jpeg";
 
 const shots = [
-  { src: team.url, label: "Team gathering", alt: "UEWG team in branded shirts", span: "sm:col-span-2 sm:row-span-2" },
-  { src: outreachBooks.url, label: "Bible distribution outreach", alt: "Team presenting books at a school outreach" },
-  { src: kidsDonation.url, label: "Donation drive", alt: "Children receiving donation items" },
-  { src: healthAdvocacy.url, label: "Menstrual health advocacy", alt: "Lady Portia holding advocacy sign at a school" },
-  { src: motherChild.url, label: "Community visit", alt: "UEWG volunteer with a young child" },
-  { src: brandedTee.url, label: "Volunteer portrait", alt: "Volunteer wearing UEWG branded shirt" },
-  { src: portraitGreen.url, label: "Empowered women", alt: "Portrait of an empowered woman" },
+  { src: team, label: "Team gathering", alt: "UEWG team in branded shirts", span: "sm:col-span-2 sm:row-span-2" },
+  { src: outreachBooks, label: "Bible distribution outreach", alt: "Team presenting books at a school outreach" },
+  { src: kidsDonation, label: "Donation drive", alt: "Children receiving donation items" },
+  { src: healthAdvocacy, label: "Menstrual health advocacy", alt: "Lady Portia holding advocacy sign at a school" },
+  { src: motherChild, label: "Community visit", alt: "UEWG volunteer with a young child" },
+  { src: brandedTee, label: "Volunteer portrait", alt: "Volunteer wearing UEWG branded shirt" },
+  { src: portraitGreen, label: "Empowered women", alt: "Portrait of an empowered woman" },
 ];
 
 const timeline = [
