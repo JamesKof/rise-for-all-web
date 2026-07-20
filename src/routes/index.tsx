@@ -9,14 +9,14 @@ import { Gallery } from "@/components/uewg/Gallery";
 import { Involved } from "@/components/uewg/Involved";
 import { Contact } from "@/components/uewg/Contact";
 import { Footer } from "@/components/uewg/Footer";
-import logo from "@/assets/logo.jpeg.asset.json";
+import logo from "@/assets/img/logo.jpeg";
 
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
       { property: "og:url", content: "/" },
-      { property: "og:image", content: logo.url },
-      { name: "twitter:image", content: logo.url },
+      { property: "og:image", content: logo },
+      { name: "twitter:image", content: logo },
     ],
     links: [{ rel: "canonical", href: "/" }],
     scripts: [
@@ -31,7 +31,7 @@ export const Route = createFileRoute("/")({
           foundingDate: "2024-11",
           founder: { "@type": "Person", name: "Portia Baanim" },
           areaServed: "Ghana",
-          logo: logo.url,
+          logo,
         }),
       },
     ],
