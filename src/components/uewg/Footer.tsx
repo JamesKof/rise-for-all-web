@@ -1,4 +1,4 @@
-import { Facebook, Instagram, Twitter, Phone, MessageCircle } from "lucide-react";
+import { Facebook, Instagram, Twitter, Phone, MessageCircle, Mail } from "lucide-react";
 import { Link } from "@tanstack/react-router";
 import logo from "@/assets/img/logo.jpeg";
 
