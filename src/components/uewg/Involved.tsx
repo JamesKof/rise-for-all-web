@@ -4,6 +4,8 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { toast } from "sonner";
+import { volunteerSchema, submitVolunteer } from "@/lib/submissions";
+import { DonateDialog } from "@/components/uewg/DonateDialog";
 
 export function Involved() {
   return (
@@ -45,14 +47,32 @@ function VolunteerCard() {
       </p>
       <form
         className="mt-5 space-y-4"
-        onSubmit={(e) => {
+        onSubmit={async (e) => {
           e.preventDefault();
+          const form = e.currentTarget;
+          const fd = new FormData(form);
+          const parsed = volunteerSchema.safeParse({
+            name: String(fd.get("name") ?? ""),
+            email: String(fd.get("email") ?? ""),
+            phone: String(fd.get("phone") ?? ""),
+            interest: String(fd.get("interest") ?? ""),
+          });
+          if (!parsed.success) {
+            toast.error(parsed.error.issues[0]?.message ?? "Please check the form");
+            return;
+          }
           setLoading(true);
-          setTimeout(() => {
-            setLoading(false);
-            (e.currentTarget as HTMLFormElement).reset();
+          try {
+            await submitVolunteer(parsed.data);
+            form.reset();
             toast.success("Thank you! We'll be in touch soon.");
-          }, 600);
+          } catch (err) {
+            toast.error("Could not submit", {
+              description: err instanceof Error ? err.message : "Please try again.",
+            });
+          } finally {
+            setLoading(false);
+          }
         }}
       >
         <div className="space-y-1.5">
@@ -96,19 +116,18 @@ function DonateCard() {
         <li className="flex items-start gap-2"><span className="mt-2 h-1.5 w-1.5 rounded-full bg-gold" /> In-kind donations (books, hygiene, food)</li>
       </ul>
       <div className="mt-auto pt-6">
-        <Button
-          size="lg"
-          className="w-full bg-gold text-gold-foreground hover:bg-gold/90"
-          onClick={() =>
-            toast("Donations coming soon", {
-              description: "Mobile money & card giving will be enabled shortly. Reach out via Contact to give today.",
-            })
+        <DonateDialog
+          trigger={
+            <Button
+              size="lg"
+              className="w-full bg-gold text-gold-foreground hover:bg-gold/90"
+            >
+              <Heart className="mr-2 h-4 w-4" /> Give Now
+            </Button>
           }
-        >
-          <Heart className="mr-2 h-4 w-4" /> Give Now
-        </Button>
+        />
         <p className="mt-3 text-center text-xs text-primary-foreground/70">
-          Mobile money & card giving coming soon.
+          Secure checkout via Hubtel · Mobile Money & card
         </p>
       </div>
     </div>
