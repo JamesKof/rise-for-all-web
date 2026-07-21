@@ -291,12 +291,3 @@ function StoryCard({ story, index }: { story: Story; index: number }) {
     </figure>
   );
 }
-import { createFileRoute } from '@tanstack/react-router'
-
-export const Route = createFileRoute('/gallery')({
-  component: RouteComponent,
-})
-
-function RouteComponent() {
-  return <div>Hello "/gallery"!</div>
-}
