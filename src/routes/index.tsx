@@ -98,11 +98,12 @@ function ProgramsTeaser() {
     <section className="py-20 md:py-28">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-2xl text-center">
-          <span className="text-xs font-medium uppercase tracking-widest text-gold-foreground/70">
+          <span className="inline-flex items-center rounded-full border border-gold/50 bg-gold/10 px-3 py-1 text-[0.7rem] font-medium uppercase tracking-[0.18em] text-primary">
             What we do
           </span>
-          <h2 className="mt-3 font-serif text-4xl font-semibold text-primary sm:text-5xl">
-            Four callings. One rising movement.
+          <h2 className="mt-4 font-serif text-4xl font-semibold text-primary sm:text-5xl">
+            <span className="italic text-gold-foreground/90">Four</span> Callings,
+            One Rising Movement
           </h2>
           <p className="mt-4 text-base text-foreground/70">
             UEWG serves the whole person &mdash; body, mind, and spirit &mdash;
