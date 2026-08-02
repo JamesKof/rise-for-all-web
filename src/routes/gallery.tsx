@@ -1,6 +1,7 @@
+import { useState } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Camera, Heart } from "lucide-react";
+import { ArrowRight, Camera, Heart, X } from "lucide-react";
 import team from "@/assets/img/team.jpeg";
 import outreachBooks from "@/assets/img/outreach-books.jpeg";
 import kidsDonation from "@/assets/img/kids-donation.jpeg";
@@ -15,6 +16,13 @@ import churchPresentation from "@/assets/img/church-presentation.jpeg";
 import kidsSupplies from "@/assets/img/kids-supplies.jpeg";
 import bibleDistribution from "@/assets/img/bible-distribution.jpeg";
 import youthWorship from "@/assets/img/youth-worship.jpeg";
+import schoolSupplies from "@/assets/img/school-supplies-donation.jpeg";
+import orphanageGroup from "@/assets/img/orphanage-group.jpeg";
+import communityCelebration from "@/assets/img/community-celebration.jpeg";
+import foodDonations from "@/assets/img/food-donations.jpeg";
+import drinksSupplies from "@/assets/img/drinks-supplies.jpeg";
+import schoolHealthTalk from "@/assets/img/school-health-talk.jpeg";
+import whenWomenPray from "@/assets/img/when-women-pray.jpeg";
 
 const SITE_URL = "https://rise-for-all-web.lovable.app";
 
