@@ -365,7 +365,11 @@ function StoryCard({
           alt={story.alt}
           loading="lazy"
           decoding="async"
+          ref={(el) => {
+            if (el?.complete) setLoaded(true);
+          }}
           onLoad={() => setLoaded(true)}
+          onError={() => setLoaded(true)}
           className={`h-full w-full object-cover transition-all duration-[1200ms] ease-out group-hover:scale-110 ${
             loaded ? "opacity-100 blur-0" : "opacity-0 blur-md"
           }`}
