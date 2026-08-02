@@ -185,11 +185,78 @@ const stories: Story[] = [
     story:
       "A portrait of one of the women UEWG walks with. Head up, work in progress — a quiet answer to the doubt she was told to carry.",
   },
+  {
+    src: schoolHealthTalk,
+    alt: "UEWG facilitator addressing students during a breast cancer awareness talk",
+    title: "\"Early detection saves lives.\"",
+    category: "Health Advocacy",
+    place: "School Health Talk · Ghana",
+    story:
+      "A hall full of students listens as a UEWG facilitator in an 'Early Detection Saves Lives' tee explains breast self-examination — for many, the first time anyone has taught them how.",
+  },
+  {
+    src: schoolSupplies,
+    alt: "Stacks of exercise books and pens donated for schoolchildren",
+    title: "Exercise books, pens, and a fresh start.",
+    category: "Education Outreach",
+    place: "Donation Drive · Ghana",
+    story:
+      "Neatly stacked exercise books and boxes of pens waiting to be shared. Every notebook is a term of schoolwork a family no longer has to worry about affording.",
+  },
+  {
+    src: orphanageGroup,
+    alt: "Large group of children and UEWG volunteers outside an orphanage home",
+    title: "The whole house came outside.",
+    category: "Orphanage Support",
+    place: "Orphanage Visit · Ghana",
+    story:
+      "Every child in the home gathered under the sun with the UEWG team. Visits like this are marked on their calendars long before we arrive.",
+  },
+  {
+    src: communityCelebration,
+    alt: "Children celebrating with volunteers at a decorated outreach event",
+    title: "A day made just for them.",
+    category: "Community Outreach",
+    place: "Outreach Celebration · Ghana",
+    story:
+      "Balloons, streamers, and a canopy in a courtyard — an afternoon where children were simply celebrated, with nothing asked of them in return.",
+  },
+  {
+    src: foodDonations,
+    alt: "Bags of rice, snacks, and drinks donated for an outreach",
+    title: "Rice, snacks, and enough for everyone.",
+    category: "Humanitarian Outreach",
+    place: "Donation Table · Ghana",
+    story:
+      "Provisions laid out before distribution: rice, biscuits, and drinks gathered by supporters who gave what they could so a home could eat well.",
+  },
+  {
+    src: drinksSupplies,
+    alt: "Children standing beside crates of drinks and boxes of donated supplies",
+    title: "Waiting, hopeful, at the table.",
+    category: "Humanitarian Outreach",
+    place: "Distribution Day · Ghana",
+    story:
+      "Boys stand beside crates of drinks and boxes of provisions on distribution day — the moment before the sharing begins is always the quietest.",
+  },
+  {
+    src: whenWomenPray,
+    alt: "When Women Pray monthly prayer meeting flyer",
+    title: "When Women Pray.",
+    category: "Prayer & Fellowship",
+    place: "Every 1st Saturday · 7:00PM, Zoom",
+    story:
+      "UEWG's monthly online prayer gathering. Women from across Ghana and beyond join on the first Saturday of each month to pray for one another and for the nation.",
+  },
 ];
 
 const categories = Array.from(new Set(stories.map((s) => s.category)));
 
 function GalleryPage() {
+  const [active, setActive] = useState<string>("All");
+  const [lightbox, setLightbox] = useState<Story | null>(null);
+  const visible = active === "All" ? stories : stories.filter((s) => s.category === active);
+
   return (
     <>
       <section className="relative overflow-hidden border-b border-gold/30 bg-gradient-to-br from-cream via-background to-secondary py-16 md:py-24">
@@ -205,16 +272,23 @@ function GalleryPage() {
           <p className="mx-auto mt-5 max-w-2xl text-base leading-relaxed text-foreground/75 sm:text-lg">
             A visual journal of the women, girls, and children UEWG has walked
             with — in orphanages, schools, churches, and communities across
-            Ghana. Hover any photo to hear the story behind it.
+            Ghana. Filter by theme, then open any photo to read its story.
           </p>
-          <div className="mt-8 flex flex-wrap justify-center gap-2">
-            {categories.map((c) => (
-              <span
+          <div className="mt-8 flex flex-wrap justify-center gap-2" role="group" aria-label="Filter photos by theme">
+            {["All", ...categories].map((c) => (
+              <button
                 key={c}
-                className="rounded-full border border-gold/40 bg-background/70 px-3 py-1 text-xs font-medium text-primary shadow-sm backdrop-blur"
+                type="button"
+                onClick={() => setActive(c)}
+                aria-pressed={active === c}
+                className={`rounded-full border px-3.5 py-1.5 text-xs font-medium shadow-sm backdrop-blur transition hover:-translate-y-0.5 ${
+                  active === c
+                    ? "border-primary bg-primary text-primary-foreground"
+                    : "border-gold/40 bg-background/70 text-primary hover:bg-gold/10"
+                }`}
               >
                 {c}
-              </span>
+              </button>
             ))}
           </div>
         </div>
@@ -222,13 +296,21 @@ function GalleryPage() {
 
       <section className="py-16 md:py-20">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="columns-1 gap-5 sm:columns-2 lg:columns-3 [column-fill:_balance]">
-            {stories.map((s, i) => (
-              <StoryCard key={s.src} story={s} index={i} />
+          <p className="mb-6 text-sm text-foreground/60" aria-live="polite">
+            Showing {visible.length} {visible.length === 1 ? "photo" : "photos"}
+            {active !== "All" ? ` in ${active}` : ""}.
+          </p>
+          <ul className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {visible.map((s, i) => (
+              <li key={s.src}>
+                <StoryCard story={s} index={i} onOpen={() => setLightbox(s)} />
+              </li>
             ))}
-          </div>
+          </ul>
         </div>
       </section>
+
+      {lightbox && <Lightbox story={lightbox} onClose={() => setLightbox(null)} />}
 
       <section className="border-t border-gold/30 bg-gradient-to-br from-secondary/60 via-background to-cream py-16 md:py-20">
         <div className="mx-auto max-w-3xl px-4 text-center sm:px-6 lg:px-8">
