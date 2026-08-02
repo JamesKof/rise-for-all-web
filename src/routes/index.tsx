@@ -149,9 +149,9 @@ function ImpactTeaser() {
       <div aria-hidden className="absolute -right-24 bottom-0 h-72 w-72 rounded-full bg-gold/15 blur-3xl" />
       <div className="relative mx-auto grid max-w-7xl gap-10 px-4 sm:px-6 lg:grid-cols-2 lg:gap-16 lg:px-8">
         <div className="grid grid-cols-2 gap-3">
-          <img src={outreachBooks} alt="Bible distribution" loading="lazy" className="aspect-square rounded-t-[6rem] rounded-b-3xl object-cover shadow-lg ring-1 ring-gold/30 transition duration-500 hover:-translate-y-1" />
-          <img src={kidsDonation} alt="Donation drive" loading="lazy" className="aspect-square rounded-3xl object-cover shadow-lg ring-1 ring-gold/30 transition duration-500 hover:-translate-y-1" />
-          <img src={healthAdvocacy} alt="Menstrual health advocacy" loading="lazy" className="col-span-2 aspect-[16/9] rounded-3xl object-cover shadow-lg ring-1 ring-gold/30 transition duration-500 hover:-translate-y-1" />
+          <img src={outreachBooks} alt="UEWG volunteers holding books at a school outreach" loading="lazy" decoding="async" className="aspect-square rounded-t-[6rem] rounded-b-3xl bg-secondary/50 object-cover shadow-lg ring-1 ring-gold/30 transition duration-500 hover:-translate-y-1" />
+          <img src={kidsDonation} alt="Children receiving donated items at a UEWG donation drive" loading="lazy" decoding="async" className="aspect-square rounded-3xl bg-secondary/50 object-cover shadow-lg ring-1 ring-gold/30 transition duration-500 hover:-translate-y-1" />
+          <img src={healthAdvocacy} alt="Lady Portia leading a menstrual health advocacy session" loading="lazy" decoding="async" className="col-span-2 aspect-[16/9] rounded-3xl bg-secondary/50 object-cover shadow-lg ring-1 ring-gold/30 transition duration-500 hover:-translate-y-1" />
         </div>
         <div className="flex flex-col justify-center">
           <span className="inline-flex w-fit items-center rounded-full border border-gold/40 bg-gold/10 px-3 py-1 text-[0.7rem] font-medium uppercase tracking-[0.18em] text-gold">Our Impact</span>
