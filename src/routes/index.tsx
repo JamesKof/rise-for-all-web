@@ -8,6 +8,8 @@ import { ArrowRight, Heart, BookOpen, HeartPulse, Church, Home as HomeIcon } fro
 import outreachBooks from "@/assets/img/outreach-books.jpeg";
 import kidsDonation from "@/assets/img/kids-donation.jpeg";
 import healthAdvocacy from "@/assets/img/health-advocacy.jpeg";
+import bibleDistribution from "@/assets/img/bible-distribution.jpeg";
+import churchYouthBibles from "@/assets/img/church-youth-bibles.jpeg";
 
 const SITE_URL = "https://rise-for-all-web.lovable.app";
 
@@ -72,24 +74,28 @@ const teasers = [
     title: "Orphanage Support",
     body: "Regular visits, donations, and love for children at three homes across Ghana.",
     image: kidsDonation,
+    alt: "Children receiving donated supplies at an orphanage visit",
   },
   {
     icon: Church,
     title: "Church & School Outreach",
     body: "Speaking, mentoring, and serving with faith communities and school chaplaincies.",
-    image: outreachBooks,
+    image: bibleDistribution,
+    alt: "Lady Portia handing a Bible to a child during a church Bible donation",
   },
   {
     icon: HeartPulse,
     title: "Health Advocacy",
     body: "Awareness on menstrual hygiene, maternal health, and breast cancer prevention.",
     image: healthAdvocacy,
+    alt: "UEWG facilitator leading a women's health awareness session",
   },
   {
     icon: BookOpen,
     title: "Faith & Leadership",
     body: "Bible distribution, mentorship, and raising the next generation of women leaders.",
-    image: outreachBooks,
+    image: churchYouthBibles,
+    alt: "Young people raising the Bibles donated to them by UEWG",
   },
 ] as const;
 
@@ -111,10 +117,10 @@ function ProgramsTeaser() {
           </p>
         </div>
         <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-          {teasers.map(({ icon: Icon, title, body, image }) => (
+          {teasers.map(({ icon: Icon, title, body, image, alt }) => (
             <article key={title} className="group flex flex-col overflow-hidden rounded-3xl border border-border bg-card shadow-sm transition hover:-translate-y-1 hover:shadow-lg">
-              <div className="aspect-[4/3] overflow-hidden">
-                <img src={image} alt={title} loading="lazy" className="h-full w-full object-cover transition duration-500 group-hover:scale-105" />
+              <div className="aspect-[4/3] overflow-hidden bg-secondary/50">
+                <img src={image} alt={alt} loading="lazy" decoding="async" className="h-full w-full object-cover transition duration-500 group-hover:scale-105" />
               </div>
               <div className="flex flex-1 flex-col p-6">
                 <div className="grid h-10 w-10 place-items-center rounded-xl bg-gold/20 text-primary ring-1 ring-gold/50">
@@ -143,9 +149,9 @@ function ImpactTeaser() {
       <div aria-hidden className="absolute -right-24 bottom-0 h-72 w-72 rounded-full bg-gold/15 blur-3xl" />
       <div className="relative mx-auto grid max-w-7xl gap-10 px-4 sm:px-6 lg:grid-cols-2 lg:gap-16 lg:px-8">
         <div className="grid grid-cols-2 gap-3">
-          <img src={outreachBooks} alt="Bible distribution" loading="lazy" className="aspect-square rounded-t-[6rem] rounded-b-3xl object-cover shadow-lg ring-1 ring-gold/30 transition duration-500 hover:-translate-y-1" />
-          <img src={kidsDonation} alt="Donation drive" loading="lazy" className="aspect-square rounded-3xl object-cover shadow-lg ring-1 ring-gold/30 transition duration-500 hover:-translate-y-1" />
-          <img src={healthAdvocacy} alt="Menstrual health advocacy" loading="lazy" className="col-span-2 aspect-[16/9] rounded-3xl object-cover shadow-lg ring-1 ring-gold/30 transition duration-500 hover:-translate-y-1" />
+          <img src={outreachBooks} alt="UEWG volunteers holding books at a school outreach" loading="lazy" decoding="async" className="aspect-square rounded-t-[6rem] rounded-b-3xl bg-secondary/50 object-cover shadow-lg ring-1 ring-gold/30 transition duration-500 hover:-translate-y-1" />
+          <img src={kidsDonation} alt="Children receiving donated items at a UEWG donation drive" loading="lazy" decoding="async" className="aspect-square rounded-3xl bg-secondary/50 object-cover shadow-lg ring-1 ring-gold/30 transition duration-500 hover:-translate-y-1" />
+          <img src={healthAdvocacy} alt="Lady Portia leading a menstrual health advocacy session" loading="lazy" decoding="async" className="col-span-2 aspect-[16/9] rounded-3xl bg-secondary/50 object-cover shadow-lg ring-1 ring-gold/30 transition duration-500 hover:-translate-y-1" />
         </div>
         <div className="flex flex-col justify-center">
           <span className="inline-flex w-fit items-center rounded-full border border-gold/40 bg-gold/10 px-3 py-1 text-[0.7rem] font-medium uppercase tracking-[0.18em] text-gold">Our Impact</span>

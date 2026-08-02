@@ -1,20 +1,26 @@
+import { useEffect, useState } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Camera, Heart } from "lucide-react";
+import { ArrowRight, Camera, Heart, X } from "lucide-react";
 import team from "@/assets/img/team.jpeg";
 import outreachBooks from "@/assets/img/outreach-books.jpeg";
 import kidsDonation from "@/assets/img/kids-donation.jpeg";
 import motherChild from "@/assets/img/mother-child.jpeg";
-import healthAdvocacy from "@/assets/img/health-advocacy.jpeg";
 import brandedTee from "@/assets/img/branded-tee.jpeg";
 import portraitGreen from "@/assets/img/portrait-green.jpeg";
 import heroAdvocacy from "@/assets/img/hero-advocacy.jpeg";
 import founder from "@/assets/img/founder.jpeg";
 import churchYouthBibles from "@/assets/img/church-youth-bibles.jpeg";
 import churchPresentation from "@/assets/img/church-presentation.jpeg";
-import kidsSupplies from "@/assets/img/kids-supplies.jpeg";
 import bibleDistribution from "@/assets/img/bible-distribution.jpeg";
 import youthWorship from "@/assets/img/youth-worship.jpeg";
+import schoolSupplies from "@/assets/img/school-supplies-donation.jpeg";
+import orphanageGroup from "@/assets/img/orphanage-group.jpeg";
+import communityCelebration from "@/assets/img/community-celebration.jpeg";
+import foodDonations from "@/assets/img/food-donations.jpeg";
+import drinksSupplies from "@/assets/img/drinks-supplies.jpeg";
+import schoolHealthTalk from "@/assets/img/school-health-talk.jpeg";
+import whenWomenPray from "@/assets/img/when-women-pray.jpeg";
 
 const SITE_URL = "https://rise-for-all-web.lovable.app";
 
@@ -124,15 +130,6 @@ const stories: Story[] = [
       "Two UEWG facilitators lead a maternal health and dignity session inside the sanctuary — turning a Sunday space into a classroom for the women of the congregation.",
   },
   {
-    src: healthAdvocacy,
-    alt: "Health advocacy session for young girls",
-    title: "The talk they never had.",
-    category: "Health Advocacy",
-    place: "Girls' Session · Ghana",
-    story:
-      "A menstrual health session with schoolgirls. Questions came slowly at first, then in a rush — because someone had finally shown up to answer them.",
-  },
-  {
     src: kidsDonation,
     alt: "Children receiving donation items",
     title: "More than a package.",
@@ -140,15 +137,6 @@ const stories: Story[] = [
     place: "Orphanage Visit · Ghana",
     story:
       "Children of a partner orphanage receive donated supplies. What arrives in a bag is unpacked over months — one meal, one exercise book, one bedtime at a time.",
-  },
-  {
-    src: kidsSupplies,
-    alt: "Children gathered around donated supplies",
-    title: "The joy that fills a tent.",
-    category: "Community Outreach",
-    place: "Community Fair · Ghana",
-    story:
-      "A community outreach at a decorated tent — where snacks, supplies, and stories were shared with the children of a low-income neighborhood.",
   },
   {
     src: motherChild,
@@ -177,11 +165,78 @@ const stories: Story[] = [
     story:
       "A portrait of one of the women UEWG walks with. Head up, work in progress — a quiet answer to the doubt she was told to carry.",
   },
+  {
+    src: schoolHealthTalk,
+    alt: "UEWG facilitator addressing students during a breast cancer awareness talk",
+    title: "\"Early detection saves lives.\"",
+    category: "Health Advocacy",
+    place: "School Health Talk · Ghana",
+    story:
+      "A hall full of students listens as a UEWG facilitator in an 'Early Detection Saves Lives' tee explains breast self-examination — for many, the first time anyone has taught them how.",
+  },
+  {
+    src: schoolSupplies,
+    alt: "Stacks of exercise books and pens donated for schoolchildren",
+    title: "Exercise books, pens, and a fresh start.",
+    category: "Education Outreach",
+    place: "Donation Drive · Ghana",
+    story:
+      "Neatly stacked exercise books and boxes of pens waiting to be shared. Every notebook is a term of schoolwork a family no longer has to worry about affording.",
+  },
+  {
+    src: orphanageGroup,
+    alt: "Large group of children and UEWG volunteers outside an orphanage home",
+    title: "The whole house came outside.",
+    category: "Orphanage Support",
+    place: "Orphanage Visit · Ghana",
+    story:
+      "Every child in the home gathered under the sun with the UEWG team. Visits like this are marked on their calendars long before we arrive.",
+  },
+  {
+    src: communityCelebration,
+    alt: "Children celebrating with volunteers at a decorated outreach event",
+    title: "A day made just for them.",
+    category: "Community Outreach",
+    place: "Outreach Celebration · Ghana",
+    story:
+      "Balloons, streamers, and a canopy in a courtyard — an afternoon where children were simply celebrated, with nothing asked of them in return.",
+  },
+  {
+    src: foodDonations,
+    alt: "Bags of rice, snacks, and drinks donated for an outreach",
+    title: "Rice, snacks, and enough for everyone.",
+    category: "Humanitarian Outreach",
+    place: "Donation Table · Ghana",
+    story:
+      "Provisions laid out before distribution: rice, biscuits, and drinks gathered by supporters who gave what they could so a home could eat well.",
+  },
+  {
+    src: drinksSupplies,
+    alt: "Children standing beside crates of drinks and boxes of donated supplies",
+    title: "Waiting, hopeful, at the table.",
+    category: "Humanitarian Outreach",
+    place: "Distribution Day · Ghana",
+    story:
+      "Boys stand beside crates of drinks and boxes of provisions on distribution day — the moment before the sharing begins is always the quietest.",
+  },
+  {
+    src: whenWomenPray,
+    alt: "When Women Pray monthly prayer meeting flyer",
+    title: "When Women Pray.",
+    category: "Prayer & Fellowship",
+    place: "Every 1st Saturday · 7:00PM, Zoom",
+    story:
+      "UEWG's monthly online prayer gathering. Women from across Ghana and beyond join on the first Saturday of each month to pray for one another and for the nation.",
+  },
 ];
 
 const categories = Array.from(new Set(stories.map((s) => s.category)));
 
 function GalleryPage() {
+  const [active, setActive] = useState<string>("All");
+  const [lightbox, setLightbox] = useState<Story | null>(null);
+  const visible = active === "All" ? stories : stories.filter((s) => s.category === active);
+
   return (
     <>
       <section className="relative overflow-hidden border-b border-gold/30 bg-gradient-to-br from-cream via-background to-secondary py-16 md:py-24">
@@ -197,16 +252,23 @@ function GalleryPage() {
           <p className="mx-auto mt-5 max-w-2xl text-base leading-relaxed text-foreground/75 sm:text-lg">
             A visual journal of the women, girls, and children UEWG has walked
             with — in orphanages, schools, churches, and communities across
-            Ghana. Hover any photo to hear the story behind it.
+            Ghana. Filter by theme, then open any photo to read its story.
           </p>
-          <div className="mt-8 flex flex-wrap justify-center gap-2">
-            {categories.map((c) => (
-              <span
+          <div className="mt-8 flex flex-wrap justify-center gap-2" role="group" aria-label="Filter photos by theme">
+            {["All", ...categories].map((c) => (
+              <button
                 key={c}
-                className="rounded-full border border-gold/40 bg-background/70 px-3 py-1 text-xs font-medium text-primary shadow-sm backdrop-blur"
+                type="button"
+                onClick={() => setActive(c)}
+                aria-pressed={active === c}
+                className={`rounded-full border px-3.5 py-1.5 text-xs font-medium shadow-sm backdrop-blur transition hover:-translate-y-0.5 ${
+                  active === c
+                    ? "border-primary bg-primary text-primary-foreground"
+                    : "border-gold/40 bg-background/70 text-primary hover:bg-gold/10"
+                }`}
               >
                 {c}
-              </span>
+              </button>
             ))}
           </div>
         </div>
@@ -214,13 +276,21 @@ function GalleryPage() {
 
       <section className="py-16 md:py-20">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="columns-1 gap-5 sm:columns-2 lg:columns-3 [column-fill:_balance]">
-            {stories.map((s, i) => (
-              <StoryCard key={s.src} story={s} index={i} />
+          <p className="mb-6 text-sm text-foreground/60" aria-live="polite">
+            Showing {visible.length} {visible.length === 1 ? "photo" : "photos"}
+            {active !== "All" ? ` in ${active}` : ""}.
+          </p>
+          <ul className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {visible.map((s, i) => (
+              <li key={s.src}>
+                <StoryCard story={s} index={i} onOpen={() => setLightbox(s)} />
+              </li>
             ))}
-          </div>
+          </ul>
         </div>
       </section>
+
+      {lightbox && <Lightbox story={lightbox} onClose={() => setLightbox(null)} />}
 
       <section className="border-t border-gold/30 bg-gradient-to-br from-secondary/60 via-background to-cream py-16 md:py-20">
         <div className="mx-auto max-w-3xl px-4 text-center sm:px-6 lg:px-8">
@@ -246,36 +316,61 @@ function GalleryPage() {
   );
 }
 
-function StoryCard({ story, index }: { story: Story; index: number }) {
+function StoryCard({
+  story,
+  index,
+  onOpen,
+}: {
+  story: Story;
+  index: number;
+  onOpen: () => void;
+}) {
+  const [loaded, setLoaded] = useState(false);
   return (
     <figure
-      className="group relative mb-5 break-inside-avoid overflow-hidden rounded-3xl bg-card shadow-md ring-1 ring-gold/20 transition-all duration-500 hover:-translate-y-1 hover:shadow-2xl hover:ring-gold/60 animate-fade-in"
+      className="group relative flex h-full flex-col overflow-hidden rounded-3xl bg-card shadow-md ring-1 ring-gold/20 transition-all duration-500 hover:-translate-y-1 hover:shadow-2xl hover:ring-gold/60 animate-fade-in"
       style={{ animationDelay: `${(index % 6) * 80}ms` }}
     >
-      <div className="relative overflow-hidden">
+      <button
+        type="button"
+        onClick={onOpen}
+        aria-label={`Open story: ${story.title}`}
+        className="relative block aspect-[4/3] w-full overflow-hidden bg-secondary/60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
+      >
+        {!loaded && (
+          <span aria-hidden className="absolute inset-0 animate-pulse bg-gradient-to-br from-secondary via-cream to-secondary" />
+        )}
         <img
           src={story.src}
           alt={story.alt}
           loading="lazy"
-          className="h-auto w-full object-cover transition-transform duration-[1200ms] ease-out group-hover:scale-110"
+          decoding="async"
+          ref={(el) => {
+            if (el?.complete) setLoaded(true);
+          }}
+          onLoad={() => setLoaded(true)}
+          onError={() => setLoaded(true)}
+          className={`h-full w-full object-cover transition-all duration-[1200ms] ease-out group-hover:scale-110 ${
+            loaded ? "opacity-100 blur-0" : "opacity-0 blur-md"
+          }`}
         />
         <div
           aria-hidden
           className="pointer-events-none absolute inset-0 bg-gradient-to-t from-plum/95 via-primary/40 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100"
         />
-        <div className="pointer-events-none absolute inset-x-0 bottom-0 translate-y-3 p-5 text-primary-foreground opacity-0 transition-all duration-500 group-hover:translate-y-0 group-hover:opacity-100">
+        <div className="pointer-events-none absolute inset-x-0 bottom-0 translate-y-3 p-5 text-left text-primary-foreground opacity-0 transition-all duration-500 group-hover:translate-y-0 group-hover:opacity-100">
           <div className="text-[10px] font-semibold uppercase tracking-[0.2em] text-gold">
             {story.category}
           </div>
           <div className="mt-1 font-serif text-lg leading-tight sm:text-xl">
             {story.title}
           </div>
-          <p className="mt-2 text-xs leading-relaxed text-primary-foreground/90 sm:text-sm">
+          <p className="mt-2 line-clamp-4 text-xs leading-relaxed text-primary-foreground/90 sm:text-sm">
             {story.story}
           </p>
         </div>
-      </div>
-      <figcaption className="flex items-start justify-between gap-3 p-4">
+      </button>
+      <figcaption className="flex flex-1 items-start justify-between gap-3 p-4">
         <div>
           <div className="text-[10px] font-semibold uppercase tracking-[0.18em] text-gold-foreground/70">
             {story.category}
@@ -289,5 +384,53 @@ function StoryCard({ story, index }: { story: Story; index: number }) {
         </div>
       </figcaption>
     </figure>
+  );
+}
+
+function Lightbox({ story, onClose }: { story: Story; onClose: () => void }) {
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") onClose();
+    };
+    document.addEventListener("keydown", onKey);
+    return () => document.removeEventListener("keydown", onKey);
+  }, [onClose]);
+
+  return (
+    <div
+      role="dialog"
+      aria-modal="true"
+      aria-label={story.title}
+      className="fixed inset-0 z-50 grid place-items-center bg-plum/80 p-4 backdrop-blur-sm animate-fade-in"
+      onClick={onClose}
+    >
+      <div
+        className="relative max-h-[90dvh] w-full max-w-3xl overflow-y-auto rounded-3xl bg-card shadow-2xl"
+        onClick={(e) => e.stopPropagation()}
+      >
+        <button
+          type="button"
+          onClick={onClose}
+          aria-label="Close photo story"
+          autoFocus
+          className="absolute right-3 top-3 grid h-11 w-11 place-items-center rounded-full bg-background/90 text-primary shadow-md transition hover:bg-background"
+        >
+          <X className="h-5 w-5" />
+        </button>
+        <img
+          src={story.src}
+          alt={story.alt}
+          decoding="async"
+          className="max-h-[60dvh] w-full bg-secondary/60 object-contain"
+        />
+        <div className="p-6">
+          <div className="text-[10px] font-semibold uppercase tracking-[0.2em] text-gold-foreground/80">
+            {story.category} · {story.place}
+          </div>
+          <h2 className="mt-2 font-serif text-2xl font-semibold text-primary">{story.title}</h2>
+          <p className="mt-3 text-sm leading-relaxed text-foreground/75">{story.story}</p>
+        </div>
+      </div>
+    </div>
   );
 }

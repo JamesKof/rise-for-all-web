@@ -20,7 +20,7 @@ export function Footer() {
         <div className="grid gap-10 md:grid-cols-[minmax(0,2fr)_minmax(0,1fr)_minmax(0,1fr)]">
           <div>
             <div className="flex items-center gap-3">
-              <img src={logo} alt="UEWG" className="h-12 w-12 rounded-full ring-2 ring-gold/60" />
+              <img src={logo} alt="Unique Empowered Women Global logo" width={48} height={48} decoding="async" className="h-12 w-12 rounded-full ring-2 ring-gold/60" />
               <div>
                 <div className="font-serif text-xl font-semibold">Unique Empowered Women Global</div>
                 <div className="text-sm italic text-gold">Women, Rise For All</div>
