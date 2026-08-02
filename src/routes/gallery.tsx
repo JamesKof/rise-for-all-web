@@ -6,14 +6,12 @@ import team from "@/assets/img/team.jpeg";
 import outreachBooks from "@/assets/img/outreach-books.jpeg";
 import kidsDonation from "@/assets/img/kids-donation.jpeg";
 import motherChild from "@/assets/img/mother-child.jpeg";
-import healthAdvocacy from "@/assets/img/health-advocacy.jpeg";
 import brandedTee from "@/assets/img/branded-tee.jpeg";
 import portraitGreen from "@/assets/img/portrait-green.jpeg";
 import heroAdvocacy from "@/assets/img/hero-advocacy.jpeg";
 import founder from "@/assets/img/founder.jpeg";
 import churchYouthBibles from "@/assets/img/church-youth-bibles.jpeg";
 import churchPresentation from "@/assets/img/church-presentation.jpeg";
-import kidsSupplies from "@/assets/img/kids-supplies.jpeg";
 import bibleDistribution from "@/assets/img/bible-distribution.jpeg";
 import youthWorship from "@/assets/img/youth-worship.jpeg";
 import schoolSupplies from "@/assets/img/school-supplies-donation.jpeg";
@@ -132,15 +130,6 @@ const stories: Story[] = [
       "Two UEWG facilitators lead a maternal health and dignity session inside the sanctuary — turning a Sunday space into a classroom for the women of the congregation.",
   },
   {
-    src: healthAdvocacy,
-    alt: "Health advocacy session for young girls",
-    title: "The talk they never had.",
-    category: "Health Advocacy",
-    place: "Girls' Session · Ghana",
-    story:
-      "A menstrual health session with schoolgirls. Questions came slowly at first, then in a rush — because someone had finally shown up to answer them.",
-  },
-  {
     src: kidsDonation,
     alt: "Children receiving donation items",
     title: "More than a package.",
@@ -148,15 +137,6 @@ const stories: Story[] = [
     place: "Orphanage Visit · Ghana",
     story:
       "Children of a partner orphanage receive donated supplies. What arrives in a bag is unpacked over months — one meal, one exercise book, one bedtime at a time.",
-  },
-  {
-    src: kidsSupplies,
-    alt: "Children gathered around donated supplies",
-    title: "The joy that fills a tent.",
-    category: "Community Outreach",
-    place: "Community Fair · Ghana",
-    story:
-      "A community outreach at a decorated tent — where snacks, supplies, and stories were shared with the children of a low-income neighborhood.",
   },
   {
     src: motherChild,
