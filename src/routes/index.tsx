@@ -137,31 +137,33 @@ function ProgramsTeaser() {
 
 function ImpactTeaser() {
   return (
-    <section className="bg-secondary/40 py-20 md:py-28">
-      <div className="mx-auto grid max-w-7xl gap-10 px-4 sm:px-6 lg:grid-cols-2 lg:gap-16 lg:px-8">
+    <section className="relative overflow-hidden bg-plum py-20 text-primary-foreground md:py-28">
+      <div aria-hidden className="absolute -left-32 top-10 h-80 w-80 rounded-full bg-primary/40 blur-3xl" />
+      <div aria-hidden className="absolute -right-24 bottom-0 h-72 w-72 rounded-full bg-gold/15 blur-3xl" />
+      <div className="relative mx-auto grid max-w-7xl gap-10 px-4 sm:px-6 lg:grid-cols-2 lg:gap-16 lg:px-8">
         <div className="grid grid-cols-2 gap-3">
-          <img src={outreachBooks} alt="Bible distribution" className="aspect-square rounded-2xl object-cover shadow-sm" />
-          <img src={kidsDonation} alt="Donation drive" className="aspect-square rounded-2xl object-cover shadow-sm" />
-          <img src={healthAdvocacy} alt="Menstrual health advocacy" className="col-span-2 aspect-[16/9] rounded-2xl object-cover shadow-sm" />
+          <img src={outreachBooks} alt="Bible distribution" loading="lazy" className="aspect-square rounded-t-[6rem] rounded-b-3xl object-cover shadow-lg ring-1 ring-gold/30 transition duration-500 hover:-translate-y-1" />
+          <img src={kidsDonation} alt="Donation drive" loading="lazy" className="aspect-square rounded-3xl object-cover shadow-lg ring-1 ring-gold/30 transition duration-500 hover:-translate-y-1" />
+          <img src={healthAdvocacy} alt="Menstrual health advocacy" loading="lazy" className="col-span-2 aspect-[16/9] rounded-3xl object-cover shadow-lg ring-1 ring-gold/30 transition duration-500 hover:-translate-y-1" />
         </div>
         <div className="flex flex-col justify-center">
-          <span className="text-xs font-medium uppercase tracking-widest text-gold-foreground/70">Our Impact</span>
-          <h2 className="mt-3 font-serif text-4xl font-semibold text-primary sm:text-5xl">
-            Real hands. Real homes. Real hope.
+          <span className="inline-flex w-fit items-center rounded-full border border-gold/40 bg-gold/10 px-3 py-1 text-[0.7rem] font-medium uppercase tracking-[0.18em] text-gold">Our Impact</span>
+          <h2 className="mt-4 font-serif text-4xl font-semibold sm:text-5xl">
+            <span className="italic text-gold">Real</span> Hands. Real Homes. Real Hope.
           </h2>
-          <p className="mt-4 text-base leading-relaxed text-foreground/80">
+          <p className="mt-4 text-base leading-relaxed text-primary-foreground/80">
             Since November 2024, UEWG has stepped into orphanage homes, school
             assemblies, church halls, and community grounds &mdash; showing up
             with Bibles, hygiene kits, hot meals, honest conversations, and
             long hugs. Every visit is a small rebellion against silence and
             neglect.
           </p>
-          <p className="mt-3 text-base leading-relaxed text-foreground/70">
+          <p className="mt-3 text-base leading-relaxed text-primary-foreground/70">
             See the moments, the milestones, and the growing timeline of a
             movement built on faith and follow-through.
           </p>
           <div className="mt-6">
-            <Button asChild size="lg" className="bg-primary text-primary-foreground hover:bg-primary/90">
+            <Button asChild size="lg" className="bg-gold text-gold-foreground transition hover:-translate-y-0.5 hover:bg-gold/90">
               <Link to="/impact">See our impact <ArrowRight className="ml-2 h-4 w-4" /></Link>
             </Button>
           </div>
