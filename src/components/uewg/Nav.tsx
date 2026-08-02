@@ -50,7 +50,7 @@ export function Nav() {
           <Button asChild variant="outline" className="hidden border-primary/30 text-primary hover:bg-primary/5 sm:inline-flex">
             <Link to="/involved">Volunteer</Link>
           </Button>
-          <Button asChild className="bg-primary text-primary-foreground hover:bg-primary/90">
+          <Button asChild className="bg-gold text-gold-foreground shadow-sm transition hover:-translate-y-0.5 hover:bg-gold/90">
             <Link to="/involved">
               <Heart className="mr-1.5 h-4 w-4" /> Donate
             </Link>
