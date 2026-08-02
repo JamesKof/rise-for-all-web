@@ -1,5 +1,6 @@
 import { useState } from "react";
-import { MapPin, Mail, Phone, Facebook, Instagram, Twitter, Send } from "lucide-react";
+import { MapPin, Mail, Phone, Send } from "lucide-react";
+import { socials } from "@/lib/socials";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
