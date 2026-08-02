@@ -1,4 +1,5 @@
-import { Facebook, Instagram, Twitter, Phone, MessageCircle, Mail } from "lucide-react";
+import { Phone, MessageCircle, Mail } from "lucide-react";
+import { socials } from "@/lib/socials";
 import { Link } from "@tanstack/react-router";
 import logo from "@/assets/img/logo.jpeg";
 
@@ -74,16 +75,15 @@ export function Footer() {
               </li>
             </ul>
             <div className="mt-4 flex gap-3">
-              {[
-                { Icon: Facebook, label: "Facebook" },
-                { Icon: Instagram, label: "Instagram" },
-                { Icon: Twitter, label: "Twitter" },
-              ].map(({ Icon, label }) => (
+              {socials.map(({ Icon, label, href, handle }) => (
                 <a
                   key={label}
-                  href="#"
-                  aria-label={label}
-                  className="grid h-10 w-10 place-items-center rounded-full border border-gold/40 text-gold transition hover:bg-gold hover:text-gold-foreground"
+                  href={href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={`${label}: ${handle}`}
+                  title={handle}
+                  className="grid h-10 w-10 place-items-center rounded-full border border-gold/40 text-gold transition hover:-translate-y-0.5 hover:bg-gold hover:text-gold-foreground"
                 >
                   <Icon className="h-4 w-4" />
                 </a>

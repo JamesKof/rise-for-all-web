@@ -1,5 +1,6 @@
 import { useState } from "react";
-import { MapPin, Mail, Phone, Facebook, Instagram, Twitter, Send } from "lucide-react";
+import { MapPin, Mail, Phone, Send } from "lucide-react";
+import { socials } from "@/lib/socials";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -78,16 +79,15 @@ export function Contact() {
           <div className="mt-8">
             <div className="text-xs font-semibold uppercase tracking-widest text-muted-foreground">Follow us</div>
             <div className="mt-3 flex gap-3">
-              {[
-                { Icon: Facebook, label: "Facebook" },
-                { Icon: Instagram, label: "Instagram" },
-                { Icon: Twitter, label: "Twitter" },
-              ].map(({ Icon, label }) => (
+              {socials.map(({ Icon, label, href, handle }) => (
                 <a
                   key={label}
-                  href="#"
-                  aria-label={label}
-                  className="grid h-11 w-11 place-items-center rounded-full border border-primary/20 text-primary transition hover:bg-primary hover:text-primary-foreground"
+                  href={href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={`${label}: ${handle}`}
+                  title={handle}
+                  className="grid h-11 w-11 place-items-center rounded-full border border-primary/20 text-primary transition hover:-translate-y-0.5 hover:bg-primary hover:text-primary-foreground"
                 >
                   <Icon className="h-4 w-4" />
                 </a>
