@@ -80,37 +80,39 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Unique Empowered Women Global — Women, Rise For All" },
+      { title: "UEWG — Unique Empowered Women Global | Women, Rise For All" },
       {
         name: "description",
         content:
-          "UEWG is a Ghana-based NGO empowering women, girls, and children through education, health advocacy, leadership, and humanitarian outreach.",
+          "UEWG is a Ghana-based NGO empowering women, girls, and children through faith, education, health, leadership, and community outreach. Volunteer, partner, or give today.",
       },
       { name: "author", content: "Unique Empowered Women Global" },
-      { property: "og:title", content: "Unique Empowered Women Global — Women, Rise For All" },
+      { property: "og:title", content: "UEWG — Unique Empowered Women Global | Women, Rise For All" },
       {
         property: "og:description",
         content:
-          "A Ghana-based NGO founded by Lady Portia, empowering women and uplifting communities through faith, education, and outreach.",
+          "UEWG is a Ghana-based NGO empowering women, girls, and children through faith, education, health, leadership, and community outreach. Volunteer, partner, or give today.",
       },
       { property: "og:type", content: "website" },
       { property: "og:site_name", content: "Unique Empowered Women Global" },
       { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:title", content: "Unique Empowered Women Global — Women, Rise For All" },
+      { name: "twitter:title", content: "UEWG — Unique Empowered Women Global | Women, Rise For All" },
       {
         name: "twitter:description",
         content:
-          "A Ghana-based NGO empowering women, girls, and children through faith, education, health, and humanitarian outreach.",
+          "UEWG is a Ghana-based NGO empowering women, girls, and children through faith, education, health, leadership, and community outreach. Volunteer, partner, or give today.",
       },
       { name: "robots", content: "index, follow" },
       { name: "theme-color", content: "#5B1A6B" },
+      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/2f957a73-36c2-4a8e-a696-84c02a2270c9/id-preview-6646d46e--ae1c379c-fad3-4332-8c55-6e83e6c31f25.lovable.app-1785652856768.png" },
+      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/2f957a73-36c2-4a8e-a696-84c02a2270c9/id-preview-6646d46e--ae1c379c-fad3-4332-8c55-6e83e6c31f25.lovable.app-1785652856768.png" },
     ],
     links: [
       {
         rel: "stylesheet",
         href: appCss,
       },
-      { rel: "icon", href: "/favicon.jpeg", type: "image/jpeg" },
+      { rel: "icon", href: "/favicon.jpeg", type: "image/x-icon" },
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
       {
