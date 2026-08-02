@@ -336,36 +336,57 @@ function GalleryPage() {
   );
 }
 
-function StoryCard({ story, index }: { story: Story; index: number }) {
+function StoryCard({
+  story,
+  index,
+  onOpen,
+}: {
+  story: Story;
+  index: number;
+  onOpen: () => void;
+}) {
+  const [loaded, setLoaded] = useState(false);
   return (
     <figure
-      className="group relative mb-5 break-inside-avoid overflow-hidden rounded-3xl bg-card shadow-md ring-1 ring-gold/20 transition-all duration-500 hover:-translate-y-1 hover:shadow-2xl hover:ring-gold/60 animate-fade-in"
+      className="group relative flex h-full flex-col overflow-hidden rounded-3xl bg-card shadow-md ring-1 ring-gold/20 transition-all duration-500 hover:-translate-y-1 hover:shadow-2xl hover:ring-gold/60 animate-fade-in"
       style={{ animationDelay: `${(index % 6) * 80}ms` }}
     >
-      <div className="relative overflow-hidden">
+      <button
+        type="button"
+        onClick={onOpen}
+        aria-label={`Open story: ${story.title}`}
+        className="relative block aspect-[4/3] w-full overflow-hidden bg-secondary/60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
+      >
+        {!loaded && (
+          <span aria-hidden className="absolute inset-0 animate-pulse bg-gradient-to-br from-secondary via-cream to-secondary" />
+        )}
         <img
           src={story.src}
           alt={story.alt}
           loading="lazy"
-          className="h-auto w-full object-cover transition-transform duration-[1200ms] ease-out group-hover:scale-110"
+          decoding="async"
+          onLoad={() => setLoaded(true)}
+          className={`h-full w-full object-cover transition-all duration-[1200ms] ease-out group-hover:scale-110 ${
+            loaded ? "opacity-100 blur-0" : "opacity-0 blur-md"
+          }`}
         />
         <div
           aria-hidden
           className="pointer-events-none absolute inset-0 bg-gradient-to-t from-plum/95 via-primary/40 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100"
         />
-        <div className="pointer-events-none absolute inset-x-0 bottom-0 translate-y-3 p-5 text-primary-foreground opacity-0 transition-all duration-500 group-hover:translate-y-0 group-hover:opacity-100">
+        <div className="pointer-events-none absolute inset-x-0 bottom-0 translate-y-3 p-5 text-left text-primary-foreground opacity-0 transition-all duration-500 group-hover:translate-y-0 group-hover:opacity-100">
           <div className="text-[10px] font-semibold uppercase tracking-[0.2em] text-gold">
             {story.category}
           </div>
           <div className="mt-1 font-serif text-lg leading-tight sm:text-xl">
             {story.title}
           </div>
-          <p className="mt-2 text-xs leading-relaxed text-primary-foreground/90 sm:text-sm">
+          <p className="mt-2 line-clamp-4 text-xs leading-relaxed text-primary-foreground/90 sm:text-sm">
             {story.story}
           </p>
         </div>
-      </div>
-      <figcaption className="flex items-start justify-between gap-3 p-4">
+      </button>
+      <figcaption className="flex flex-1 items-start justify-between gap-3 p-4">
         <div>
           <div className="text-[10px] font-semibold uppercase tracking-[0.18em] text-gold-foreground/70">
             {story.category}
@@ -379,5 +400,45 @@ function StoryCard({ story, index }: { story: Story; index: number }) {
         </div>
       </figcaption>
     </figure>
+  );
+}
+
+function Lightbox({ story, onClose }: { story: Story; onClose: () => void }) {
+  return (
+    <div
+      role="dialog"
+      aria-modal="true"
+      aria-label={story.title}
+      className="fixed inset-0 z-50 grid place-items-center bg-plum/80 p-4 backdrop-blur-sm animate-fade-in"
+      onClick={onClose}
+    >
+      <div
+        className="relative max-h-[90dvh] w-full max-w-3xl overflow-y-auto rounded-3xl bg-card shadow-2xl"
+        onClick={(e) => e.stopPropagation()}
+      >
+        <button
+          type="button"
+          onClick={onClose}
+          aria-label="Close photo story"
+          autoFocus
+          className="absolute right-3 top-3 grid h-11 w-11 place-items-center rounded-full bg-background/90 text-primary shadow-md transition hover:bg-background"
+        >
+          <X className="h-5 w-5" />
+        </button>
+        <img
+          src={story.src}
+          alt={story.alt}
+          decoding="async"
+          className="max-h-[60dvh] w-full bg-secondary/60 object-contain"
+        />
+        <div className="p-6">
+          <div className="text-[10px] font-semibold uppercase tracking-[0.2em] text-gold-foreground/80">
+            {story.category} · {story.place}
+          </div>
+          <h2 className="mt-2 font-serif text-2xl font-semibold text-primary">{story.title}</h2>
+          <p className="mt-3 text-sm leading-relaxed text-foreground/75">{story.story}</p>
+        </div>
+      </div>
+    </div>
   );
 }
